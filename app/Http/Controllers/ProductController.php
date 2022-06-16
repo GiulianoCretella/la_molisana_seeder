@@ -40,15 +40,16 @@ class ProductController extends Controller
         $data = $request->all();
         dump($data);
         $newProduct = new Product();
-        $newProduct->title= $data['title'];
-        if(!empty($data['description'])){
-            $newProduct->description=$data['description'];
-        }
-        $newProduct->type=$data['type'];
-        $newProduct->image=$data['image'];
-        $newProduct->cooking_time=$data['cooking_time'];
-        $newProduct->weight=$data['weight'];
-        $newProduct->save();
+        $newProduct= Product::create($data);
+        // $newProduct->title= $data['title'];
+        // if(!empty($data['description'])){
+        //     $newProduct->description=$data['description'];
+        // }
+        // $newProduct->type=$data['type'];
+        // $newProduct->image=$data['image'];
+        // $newProduct->cooking_time=$data['cooking_time'];
+        // $newProduct->weight=$data['weight'];
+        // $newProduct->save();
         return redirect()->route('products.show',$newProduct->id);
  }
 
@@ -87,16 +88,18 @@ class ProductController extends Controller
     {
         $data = $request->all();
         $product = Product::findOrFail($id);
-        // $product->update($data);
-        $product->title= $data['title'];
-        if(!empty($data['description'])){
-            $product->description=$data['description'];
-        }
-        $product->type=$data['type'];
-        $product->image=$data['image'];
-        $product->cooking_time=$data['cooking_time'];
-        $product->weight=$data['weight'];
-        $product->save();
+        // $product->title= $data['title'];
+        // if(!empty($data['description'])){
+        //     $product->description=$data['description'];
+        // }
+        // $product->type=$data['type'];
+        // $product->image=$data['image'];
+        // $product->cooking_time=$data['cooking_time'];
+        // $product->weight=$data['weight'];
+        // $product->save();
+
+        $product->update($data);
+
         return redirect()->route('products.show',$product->id);
     }
 
